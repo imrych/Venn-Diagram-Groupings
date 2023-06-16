@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="neutron.png" type="image/x-icon">
+    <title>Discrete Math</title>
+</head>
+<body>
+    <main>
+        <h1>Select number of sets:</h1>
+        <div class="button-container">
+            <button id="two-set-btn">2 SETS</button>
+            <button id="three-set-btn">3 SETS</button>
+        </div>
+
+        <div id="two-set-container">
+            <p>Set A</p>
+            <input type="text" id="set1">
+            <p>Set B</p>
+            <input type="text" id="set2">
+
+            <input id="submit-btn" type="submit" value="Insert">
+        </div>
+    
+        <div id="three-set-container">
+            <p>Set A</p>
+            <input type="text" id="set1-of-3">
+            <p>Set B</p>
+            <input type="text" id="set2-of-3">
+            <p>Set C</p>
+            <input type="text" id="set3-of-3">
+
+            <input id="submit-btn2" type="submit" value="Insert">
+        </div>
+    </main>
+
+    <!-- SETS -->
+    <aside id="aside">
+        <!-- FOR 2 SET SELECTION  -->
+        <div id="select-2-set">
+            <div class="set-flex">
+                <h3>Set A: </h3>
+                <p id="set1-container"></p>
+            </div>
+
+            <div class="set-flex">
+                <h3>Set B: </h3>
+                <p id="set2-container"></p>
+            </div>
+        </div>
+
+        <!-- FOR 3 SET SELECTION -->
+        <div id="select-3-set">
+            <div class="set-flex">
+                <h3>Set A: </h3>
+                <p id="set-container-1"></p>
+            </div>
+
+            <div class="set-flex">
+                <h3>Set B: </h3>
+                <p id="set-container-2"></p>
+            </div>
+            <div class="set-flex">
+                <h3>Set C: </h3>
+                <p id="set-container-3"></p>
+            </div>
+        </div>
+
+        <div class="text-container">
+
+            <!-- 2 SET -->
+            <p id="union-container"></p>
+
+            <p id="intersection1-container"></p>
+            <p id="intersection2-container"></p>
+
+            <p id="difference1-container"></p>
+            <p id="difference2-container"></p>
+
+            <p id="complement1-container"></p>
+            <p id="complement2-container"></p>
+
+            <!-- 3 SET -->
+            
+            <!-- DIFFERENCE -->
+            <p id="difference3-container-3"></p>
+            <p id="difference4-container-3"></p>
+            <p id="difference5-container-3"></p>
+            <p id="difference6-container-3"></p>
+
+            <!-- COMPLEMENT -->
+            <p id="complement1-container-3"></p>
+            <p id="complement2-container-3"></p>
+            <p id="complement3-container-3"></p>
+
+            <!-- INTERSECTION -->
+            <p id="intersection1-container-3"></p>
+            <p id="intersection2-container-3"></p>
+            <p id="intersection3-container-3"></p>
+            <p id="intersectionall-container-3"></p>
+
+        </div>
+    </aside>
+
+    <h1 class="heading-title" id="title">Logic Sets for 2 SETS</h1>
+    <h1 class="heading-title" id="title2">Logic Set for 3 SETS</h1>
+
+    <div class="venn-diagram-container-2" id="diagram2">
+        <div>
+            <div class="venn-diagram">
+                <div class="huge-circle-1" id="set-a">Set A</div>
+                <div class="intersect-3" id="intersect-ab"></div>
+                <div class="intersect-3" id="intersect-bc"></div>
+                <div class="intersect-3" id="intersect-ac"></div>
+                <div class="intersect-3" id="intersect-all"></div>
+                <div class="huge-circle-2" id="set-b">Set B</div>
+                <div class="huge-circle-3" id="set-c">Set C</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="venn-diagram-container" id="diagram">
+        <div>
+            <h1>Intersection of Sets</h1>
+            <div class="venn-diagram">
+                <div class="circle-1" id="intersect-set-a"></div>
+                <div class="intersect" id="intersect-both"></div>
+                <div class="circle-2" id="intersect-set-b"></div>
+            </div>
+        </div>
+    
+        <div>
+            <h1>Difference of Sets</h1>
+            <div class="venn-diagram">
+                <div class="circle-1" id="difference-set-a"></div>
+                <div class="circle-2" id="difference-set-b"></div>
+            </div>
+        </div>
+    
+        <div>
+            <h1>Complement of Sets</h1>
+            <div class="venn-diagram">
+                <div class="circle-1" id="complement-set-a"></div>
+                <div class="circle-2" id="complement-set-b"></div>
+            </div>
+        </div>
+    
+        <div>
+            <h1>Symmetric Difference of Sets</h1>
+            <div class="venn-diagram">
+                <div class="circle-1" id="symmetric-set-a"></div>
+                <div class="circle-2" id="symmetric-set-b"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>Created by BSIT 1-1 as a fulfillment for Final Project in Discrete Mathematics (2023)</p>
+        <a href="#">Members</a>
+    </footer>
+</body>
+</html>

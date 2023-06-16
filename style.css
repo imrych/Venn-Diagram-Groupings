@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Nunito Sans', sans-serif;
+}
+
+#two-set-container, #three-set-container {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+button {
+    padding: 1.5rem 3rem;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    background-color: rgb(55, 55, 118);
+    font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+input {
+    padding: .6rem .8rem;
+    border-radius: 12px;
+    background-color: #dadada;
+    border: none;
+    outline: none;
+}
+
+.text-container {
+    margin: 1rem;
+}
+
+.venn-diagram {
+    position: relative;
+    margin: 2rem 10rem;
+}
+
+.circle-1 {
+    border: 2px black solid;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    text-align: end;
+    padding: 4rem;
+}
+
+.circle-2 {
+    border: 2px black solid;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 60%;
+    padding: 4rem;
+}
+
+.circle-3 {
+    border: 2px black solid;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 66%;
+    padding: 4rem;
+}
+
+.intersect {
+    width: 8rem;
+    height: 15rem;
+    position: absolute;
+    top: 12%;
+    border-radius: 100%;
+    right: 60%;
+    padding: 3rem;
+}
+
+.set-flex {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#submit-btn, #submit-btn2 {
+    background-color:#373776;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#select-2-set {
+    display: none;
+    padding: 1rem;
+}
+
+#select-3-set {
+    display: none;
+    padding: 1rem;
+}
+
+aside {
+    width: auto;
+    margin: 1rem 12rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 12px;
+    display: none;
+}
+
+.heading-title {
+    text-align: center;
+    visibility: hidden;
+}
+
+#title {
+    margin-top: 6rem;
+}
+
+.venn-diagram-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #d2d9ff;
+    padding: 5rem;
+    width: auto;
+    margin: 2rem 2rem;
+    border-radius: 12px;
+
+    visibility: hidden;
+}
+
+.venn-diagram-container-2 {
+    display: none;
+
+    width: auto;
+    margin: 2rem;
+}
+
+.huge-circle-1 {
+    border: 2px black solid;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    text-align: end;
+    padding: 5rem;
+    margin-left: 12rem;
+
+    text-align: start;
+}
+
+.huge-circle-2 {
+    border: 2px black solid;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 20%;
+    padding: 5rem;
+
+    text-align: end;
+}
+
+.huge-circle-3 {
+    border: 2px black solid;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 32%;
+    padding: 4rem;
+    padding-top: 18rem;
+    text-align: center;
+}
+
+.intersect-3 {
+    padding: 4rem;
+}
+
+#intersect-ab {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 15%;
+    left: 41%;
+}
+
+#intersect-bc {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 65%;
+    left: 52%;
+}
+
+#intersect-ac {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 65%;
+    left: 31%;
+}
+
+#intersect-all {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 41%;
+}
+/* FOOTER SECTION */
+
+footer {
+    text-align: center;
+    background-color: #191938;
+    padding: 2rem;
+    color: white;
+}
