@@ -137,7 +137,7 @@ const intersectDiagramAll = document.getElementById('intersect-all');
 const intersectOne = document.getElementById('intersection1-container-3');
 const intersectTwo = document.getElementById('intersection2-container-3');
 const intersectThree = document.getElementById('intersection3-container-3');
-const intersectAll = document.getElementById('intersectionall-container-3');
+const intersectAll = document.getElementById('intersectional-container-3');
 
 const differenceThree = document.getElementById('difference3-container-3');
 const differenceFour = document.getElementById('difference4-container-3');
