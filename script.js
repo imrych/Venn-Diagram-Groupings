@@ -1,218 +1,255 @@
-const twoSetButton = document.getElementById('two-set-btn');
-const threeSetButton = document.getElementById('three-set-btn');
-const twoSetContainer = document.getElementById('two-set-container');
-const threeSetContainer = document.getElementById('three-set-container');
+console.clear();
 
-const twoSetText = document.getElementById('select-2-set');
-const threeSetText = document.getElementById('select-3-set');
+const { gsap, imagesLoaded } = window;
 
-const diagram = document.getElementById('diagram');
-const diagram2 = document.getElementById('diagram2');
+const buttons = {
+	prev: document.querySelector(".btn--left"),
+	next: document.querySelector(".btn--right"),
+};
+const cardsContainerEl = document.querySelector(".cards__wrapper");
+const appBgContainerEl = document.querySelector(".app__bg");
 
-const title = document.getElementById('title');
-const title2 = document.getElementById('title2');
+const cardInfosContainerEl = document.querySelector(".info__wrapper");
 
-// DIAGRAM GENERATION FOR 3 SETS
-const diagramA = document.getElementById('set-a');
-const diagramB = document.getElementById('set-b');
-const diagramC = document.getElementById('set-c');
+buttons.next.addEventListener("click", () => swapCards("right"));
 
-const aside = document.getElementById('aside');
-// If user select 2 button
-// it will show two input
-twoSetButton.addEventListener('click', () => {
-    aside.style.display = "block";
+buttons.prev.addEventListener("click", () => swapCards("left"));
 
-    twoSetContainer.style.display = "flex";
-    twoSetText.style.display = "block"
+function swapCards(direction) {
+	const currentCardEl = cardsContainerEl.querySelector(".current--card");
+	const previousCardEl = cardsContainerEl.querySelector(".previous--card");
+	const nextCardEl = cardsContainerEl.querySelector(".next--card");
 
-    threeSetContainer.style.display = "none";
-    threeSetText.style.display ="none";
+	const currentBgImageEl = appBgContainerEl.querySelector(".current--image");
+	const previousBgImageEl = appBgContainerEl.querySelector(".previous--image");
+	const nextBgImageEl = appBgContainerEl.querySelector(".next--image");
 
-    diagram.style.visibility = "visible";
-    title.style.visibility = "visible";
+	changeInfo(direction);
+	swapCardsClass();
 
-    diagram2.style.display = "none";
-    title2.style.visibility ="hidden";
+	removeCardEvents(currentCardEl);
 
-})
+	function swapCardsClass() {
+		currentCardEl.classList.remove("current--card");
+		previousCardEl.classList.remove("previous--card");
+		nextCardEl.classList.remove("next--card");
 
-//If user select 3 button
-// it will show three input 
-threeSetButton.addEventListener('click', () => {
-    aside.style.display = "block";
+		currentBgImageEl.classList.remove("current--image");
+		previousBgImageEl.classList.remove("previous--image");
+		nextBgImageEl.classList.remove("next--image");
 
-    threeSetContainer.style.display = "flex";
-    threeSetText.style.display ="block";
+		currentCardEl.style.zIndex = "50";
+		currentBgImageEl.style.zIndex = "-2";
 
-    twoSetContainer.style.display = "none";
-    twoSetText.style.display = "none"
+		if (direction === "right") {
+			previousCardEl.style.zIndex = "20";
+			nextCardEl.style.zIndex = "30";
 
-    diagram.style.visibility = "hidden";
-    diagram2.style.display = "block";
-    
-    title.style.visibility = "hidden";
-    title2.style.visibility ="visible";
-})
+			nextBgImageEl.style.zIndex = "-1";
 
-const firstSetInput = document.getElementById('set1');
-const secondSetInput = document.getElementById('set2');
+			currentCardEl.classList.add("previous--card");
+			previousCardEl.classList.add("next--card");
+			nextCardEl.classList.add("current--card");
 
-const firstSet = document.getElementById('set1-container');
-const secondSet = document.getElementById('set2-container');
-const thirdSet = document.getElementById('set3-container');
+			currentBgImageEl.classList.add("previous--image");
+			previousBgImageEl.classList.add("next--image");
+			nextBgImageEl.classList.add("current--image");
+		} else if (direction === "left") {
+			previousCardEl.style.zIndex = "30";
+			nextCardEl.style.zIndex = "20";
 
-const unionContainer = document.getElementById('union-container');
+			previousBgImageEl.style.zIndex = "-1";
 
-const inter1Container = document.getElementById('intersection1-container');
-const inter2Container = document.getElementById('intersection2-container');
+			currentCardEl.classList.add("next--card");
+			previousCardEl.classList.add("current--card");
+			nextCardEl.classList.add("previous--card");
 
-const diff1Container = document.getElementById('difference1-container');
-const diff2Container = document.getElementById('difference2-container');
+			currentBgImageEl.classList.add("next--image");
+			previousBgImageEl.classList.add("current--image");
+			nextBgImageEl.classList.add("previous--image");
+		}
+	}
+}
 
-const comp1Container = document.getElementById('complement1-container');
-const comp2Container = document.getElementById('complement2-container');
+function changeInfo(direction) {
+	let currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
+	let previousInfoEl = cardInfosContainerEl.querySelector(".previous--info");
+	let nextInfoEl = cardInfosContainerEl.querySelector(".next--info");
 
-const submitBtn = document.getElementById('submit-btn');
-const submitBtnTwo = document.getElementById('submit-btn2');
+	gsap.timeline()
+		.to([buttons.prev, buttons.next], {
+		duration: 0.2,
+		opacity: 0.5,
+		pointerEvents: "none",
+	})
+		.to(
+		currentInfoEl.querySelectorAll(".text"),
+		{
+			duration: 0.4,
+			stagger: 0.1,
+			translateY: "-120px",
+			opacity: 0,
+		},
+		"-="
+	)
+		.call(() => {
+		swapInfosClass(direction);
+	})
+		.call(() => initCardEvents())
+		.fromTo(
+		direction === "right"
+		? nextInfoEl.querySelectorAll(".text")
+		: previousInfoEl.querySelectorAll(".text"),
+		{
+			opacity: 0,
+			translateY: "40px",
+		},
+		{
+			duration: 0.4,
+			stagger: 0.1,
+			translateY: "0px",
+			opacity: 1,
+		}
+	)
+		.to([buttons.prev, buttons.next], {
+		duration: 0.2,
+		opacity: 1,
+		pointerEvents: "all",
+	});
 
-//FUNCTION if user selects 2 sets
-submitBtn.addEventListener('click', () => {
-    const setA = new Set(firstSetInput.value.split(" "));
-    const setB = new Set(secondSetInput.value.split(" "));
-  
-    performSetOperations([setA, setB]);
-    firstSet.textContent = firstSetInput.value;
-    secondSet.textContent = secondSetInput.value;
+	function swapInfosClass() {
+		currentInfoEl.classList.remove("current--info");
+		previousInfoEl.classList.remove("previous--info");
+		nextInfoEl.classList.remove("next--info");
 
-})
+		if (direction === "right") {
+			currentInfoEl.classList.add("previous--info");
+			nextInfoEl.classList.add("current--info");
+			previousInfoEl.classList.add("next--info");
+		} else if (direction === "left") {
+			currentInfoEl.classList.add("next--info");
+			nextInfoEl.classList.add("previous--info");
+			previousInfoEl.classList.add("current--info");
+		}
+	}
+}
 
-// FOR THREE SETS INPUT
-const setOne = document.getElementById('set1-of-3');
-const setTwo = document.getElementById('set2-of-3');
-const setThree = document.getElementById('set3-of-3');
+function updateCard(e) {
+	const card = e.currentTarget;
+	const box = card.getBoundingClientRect();
+	const centerPosition = {
+		x: box.left + box.width / 2,
+		y: box.top + box.height / 2,
+	};
+	let angle = Math.atan2(e.pageX - centerPosition.x, 0) * (35 / Math.PI);
+	gsap.set(card, {
+		"--current-card-rotation-offset": `${angle}deg`,
+	});
+	const currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
+	gsap.set(currentInfoEl, {
+		rotateY: `${angle}deg`,
+	});
+}
 
-const setOneContainer = document.getElementById('set-container-1');
-const setTwoContainer = document.getElementById('set-container-2');
-const setThreeContainer = document.getElementById('set-container-3');
+function resetCardTransforms(e) {
+	const card = e.currentTarget;
+	const currentInfoEl = cardInfosContainerEl.querySelector(".current--info");
+	gsap.set(card, {
+		"--current-card-rotation-offset": 0,
+	});
+	gsap.set(currentInfoEl, {
+		rotateY: 0,
+	});
+}
 
-// FUNCTION if user selects 3 sets
-submitBtnTwo.addEventListener('click', () => {
-    const setA = new Set(setOne.value.split(" "));
-    const setB = new Set(setTwo.value.split(" "));
-    const setC = new Set(setThree.value.split(" "));
-  
-    performSetOperations([setA, setB, setC]);
-    setOneContainer.textContent = setOne.value;
-    setTwoContainer.textContent = setTwo.value;
-    setThreeContainer.textContent = setThree.value;
+function initCardEvents() {
+	const currentCardEl = cardsContainerEl.querySelector(".current--card");
+	currentCardEl.addEventListener("pointermove", updateCard);
+	currentCardEl.addEventListener("pointerout", (e) => {
+		resetCardTransforms(e);
+	});
+}
 
-    diagramA.textContent = setOne.value;
-    diagramB.textContent = setTwo.value;
-    diagramC.textContent = setThree.value;
-})
+initCardEvents();
 
-// FOR VENN DIAGRAM
-const intersectDiagramA = document.getElementById('intersect-set-a');
-const intersectDiagramBoth = document.getElementById('intersect-both');
-const intersectDiagramB = document.getElementById('intersect-set-b');
+function removeCardEvents(card) {
+	card.removeEventListener("pointermove", updateCard);
+}
 
-const diffDiagramA = document.getElementById('difference-set-a');
-const diffDiagramB = document.getElementById('difference-set-b');
+function init() {
 
-const compDiagramA = document.getElementById('complement-set-a');
-const compDiagramB = document.getElementById('complement-set-b');
+	let tl = gsap.timeline();
 
-const symmetricDiagramA = document.getElementById('symmetric-set-a');
-const symmetricDiagramB = document.getElementById('symmetric-set-b');
+	tl.to(cardsContainerEl.children, {
+		delay: 0.15,
+		duration: 0.5,
+		stagger: {
+			ease: "power4.inOut",
+			from: "right",
+			amount: 0.1,
+		},
+		"--card-translateY-offset": "0%",
+	})
+		.to(cardInfosContainerEl.querySelector(".current--info").querySelectorAll(".text"), {
+		delay: 0.5,
+		duration: 0.4,
+		stagger: 0.1,
+		opacity: 1,
+		translateY: 0,
+	})
+		.to(
+		[buttons.prev, buttons.next],
+		{
+			duration: 0.4,
+			opacity: 1,
+			pointerEvents: "all",
+		},
+		"-=0.4"
+	);
+}
 
-// FOR VENN DIAGRAM - THREE SETS
-const intersectDiagramAB = document.getElementById('intersect-ab');
-const intersectDiagramBC = document.getElementById('intersect-bc');
-const intersectDiagramAC = document.getElementById('intersect-ac');
-const intersectDiagramAll = document.getElementById('intersect-all');
+const waitForImages = () => {
+	const images = [...document.querySelectorAll("img")];
+	const totalImages = images.length;
+	let loadedImages = 0;
+	const loaderEl = document.querySelector(".loader span");
 
+	gsap.set(cardsContainerEl.children, {
+		"--card-translateY-offset": "100vh",
+	});
+	gsap.set(cardInfosContainerEl.querySelector(".current--info").querySelectorAll(".text"), {
+		translateY: "40px",
+		opacity: 0,
+	});
+	gsap.set([buttons.prev, buttons.next], {
+		pointerEvents: "none",
+		opacity: "0",
+	});
 
-// FOR THREE SETS
-const intersectOne = document.getElementById('intersection1-container-3');
-const intersectTwo = document.getElementById('intersection2-container-3');
-const intersectThree = document.getElementById('intersection3-container-3');
-const intersectAll = document.getElementById('intersectional-container-3');
+	images.forEach((image) => {
+		imagesLoaded(image, (instance) => {
+			if (instance.isComplete) {
+				loadedImages++;
+				let loadProgress = loadedImages / totalImages;
 
-const differenceThree = document.getElementById('difference3-container-3');
-const differenceFour = document.getElementById('difference4-container-3');
-const differenceFive = document.getElementById('difference5-container-3');
-const differenceSix = document.getElementById('difference6-container-3');
+				gsap.to(loaderEl, {
+					duration: 1,
+					scaleX: loadProgress,
+					backgroundColor: `hsl(${loadProgress * 120}, 100%, 50%`,
+				});
 
-const complementOne = document.getElementById('complement1-container-3');
-const complementTwo = document.getElementById('complement2-container-3');
-const complementThree = document.getElementById('complement3-container-3');
+				if (totalImages == loadedImages) {
+					gsap.timeline()
+						.to(".loading__wrapper", {
+						duration: 0.8,
+						opacity: 0,
+						pointerEvents: "none",
+					})
+						.call(() => init());
+				}
+			}
+		});
+	});
+};
 
-function performSetOperations(setData) {
-    if (setData.length === 2) {
-      const setA = setData[0];
-      const setB = setData[1];
-      unionContainer.textContent = "Union of Sets = " + [...new Set([...setA, ...setB])].sort((a, b) => a - b).join(", ");
-      //   union2Container.textContent = "Union of set B and set A (B u A) = " + [...new Set([...setB, ...setA])].join(", ");
-      
-      inter1Container.textContent = "Intersection of Sets = " + [...new Set([...setA].filter(x => setB.has(x)))].join(", ");
-      intersectDiagramBoth.textContent = [...new Set([...setA].filter(x => setB.has(x)))].join(", ");
-
-      diff1Container.textContent = "Difference of set A and set B (A - B) = " + [...new Set([...setA].filter(x => !setB.has(x)))].join(", ");
-      diff2Container.textContent = "Difference of set B and set A (B - A) = " + [...new Set([...setB].filter(x => !setA.has(x)))].join(", ");
-      diffDiagramB.textContent = [...new Set([...setA].filter(x => !setB.has(x)))].join(", ");
-      diffDiagramA.textContent = [...new Set([...setB].filter(x => !setA.has(x)))].join(", ");
-
-      const complementA = new Set([...setB].filter(x => !setA.has(x)));
-      comp1Container.textContent = "Complement of set A (A') = " + [...complementA].join(", ");
-      compDiagramB.textContent = [...complementA].join(", ");
-
-      const complementB = new Set([...setA].filter(x => !setB.has(x)));
-      comp2Container.textContent = "Complement of set B (B') = " + [...complementB].join(", ");
-      compDiagramA.textContent = [...complementB].join(", ");
-
-
-    } else 
-    if (setData.length === 3) {
-      const setA = setData[0];
-      const setB = setData[1];
-      const setC = setData[2];
-
-      unionContainer.textContent = "Union of sets: " + [...new Set([...setA, ...setB, ...setC])].join(", ");
-
-      intersectOne.textContent = "Intersection of set A and set B (A ∩ B) = " + [...new Set([...setA].filter(x => setB.has(x)))].join(", ");
-      intersectDiagramAB.textContent = [...new Set([...setA].filter(x => setB.has(x)))].join(", ");
-
-      intersectTwo.textContent = "Intersection of set A and set C (A ∩ C) = " + [...new Set([...setA].filter(x => setC.has(x)))].join(", ");
-      intersectDiagramAC.textContent = [...new Set([...setA].filter(x => setC.has(x)))].join(", ");
-
-      intersectThree.textContent = "Intersection of set B and set C (B ∩ C) = " + [...new Set([...setB].filter(x => setC.has(x)))].join(", ");
-      intersectDiagramBC.textContent = [...new Set([...setB].filter(x => setC.has(x)))].join(", ");
-      
-      const intersectionAll = setData.reduce((acc, set) => {
-        return new Set([...acc].filter(x => set.has(x)));
-      });
-  
-      intersectAll.textContent = "Intersection of All Sets = " + [...intersectionAll].join(", ");
-      intersectDiagramAll.textContent = [...intersectionAll].join(", ");
- 
-      diff1Container.textContent = "Difference of set A and set B (A - B) = " + [...new Set([...setA].filter(x => !setB.has(x)))].join(", ");
-      diff2Container.textContent = "Difference of set B and set A (B - A) = " + [...new Set([...setB].filter(x => !setA.has(x)))].join(", ");
-      differenceThree.textContent = "Difference of set A and set C (A - C) = " + [...new Set([...setA].filter(x => !setC.has(x)))].join(", ");
-      differenceFour.textContent = "Difference of set C and set A (C - A) = " + [...new Set([...setC].filter(x => !setA.has(x)))].join(", ");
-      differenceFive.textContent = "Difference of set B and set C (B - C) = " + [...new Set([...setB].filter(x => !setC.has(x)))].join(", ");
-      differenceSix.textContent = "Difference of set C and set B (C - B) = " + [...new Set([...setC].filter(x => !setB.has(x)))].join(", ");
-
-      const complementA = new Set([...setB, ...setC].filter(x => !setA.has(x)));
-      complementOne.textContent = "Complement of set A (A') = " + [...complementA].join(", ");
-
-      const complementB = new Set([...setA, ...setC].filter(x => !setB.has(x)));
-      complementTwo.textContent = "Complement of set B (B') = " + [...complementB].join(", ");
-
-      const complementC = new Set([...setA, ...setB].filter(x => !setC.has(x)));
-      complementThree.textContent = "Complement of set C (C') = " + [...complementC].join(", ");
-
-    } else {
-      console.log("Invalid number of sets.");
-    }
-  }
+waitForImages();
