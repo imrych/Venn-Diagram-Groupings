@@ -228,7 +228,7 @@ const inputParameter = document.querySelectorAll('[data-input]');
 const textParameter = document.querySelectorAll('[data-text]');
 const resetBtn = document.getElementById('reset-btn');
 
-function handleReset() {
+function handleReset() {  
   inputParameter.forEach((e) => {
     e.value = '';
   });
