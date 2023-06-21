@@ -29,7 +29,7 @@ body{
 header {
     background-color: #191938;
     color: white;
-    padding: 2rem 4rem;
+    padding: 0.5rem 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,6 +48,12 @@ header {
     display: none;
     align-items: center;
     gap: 1rem;
+}
+
+.ext-link-container{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
 }
 
 main {
@@ -259,7 +265,7 @@ aside {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #d2d9ff;
+    background-color: hsl(231, 100%, 91%, 0.5);
     padding: 5rem;
     width: auto;
     margin: 2rem 2rem;

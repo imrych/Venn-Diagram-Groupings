@@ -55,6 +55,16 @@ threeSetButton.addEventListener('click', () => {
     title2.style.visibility ="visible";
 })
 
+window.addEventListener('DOMContentLoaded', () => {
+  aside.style.display = "block";
+
+  twoSetContainer.style.display = "flex";
+  twoSetText.style.display = "block"
+  
+  diagram.style.visibility = "visible";
+  title.style.visibility = "visible";
+})
+
 const firstSetInput = document.getElementById('set1');
 const secondSetInput = document.getElementById('set2');
 
