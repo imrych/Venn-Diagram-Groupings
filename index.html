@@ -11,24 +11,24 @@
 <body>
     <header>
         <h1>Discrete Mathematics</h1>
+        <div class="button-container">
+            <button><span id="two-set-btn">2 SETS</span></button>
+            <button><span id="three-set-btn">3 SETS</span></button>
+            <button><span id="reset-btn">RESET</span></button>
+        </div>
         <div class="ext-link-container">
             <a class="github" target="_blank" href="https://github.com/dazedmind/diagram-generator"><i class="fa-brands fa-github fa-2xl"></i></a>
         </div>
     </header>
     <main>
-        <h1>Select number of sets:</h1>
-        <button><span id="two-set-btn">2 SETS</span></button>
-        <button><span id="three-set-btn">3 SETS</span></button>
-        <button><span id="reset-btn">RESET</span></button>
-        </div>
-
         <div id="two-set-container">
             <p>Set A</p>
             <input type="text" id="set1" data-input>
             <p>Set B</p>
             <input type="text" id="set2" data-input>
-
-            <input id="submit-btn" type="submit" value="Insert">
+            <button id="submit-btn" type="submit">
+                <span class="text">Insert</span>
+            </button>
         </div>
     
         <div id="three-set-container">
@@ -38,8 +38,9 @@
             <input type="text" id="set2-of-3" data-input>
             <p>Set C</p>
             <input type="text" id="set3-of-3" data-input>
-
-            <input id="submit-btn2" type="submit" value="Insert">
+                <button id="submit-btn2" type="submit">
+                    <span class="text">Insert</span>
+                </button>
         </div>
     </main>
 
@@ -161,7 +162,8 @@
 
     <footer>
         <p>Created by BSIT 1-1 as a fulfillment for Final Project in Discrete Mathematics (2023)</p>
-        <a href="members.html">Members</a>
+        <br>
+        <button><span><a href="members.html">Members</a></span></button>
     </footer>
 </body>
 </html>
