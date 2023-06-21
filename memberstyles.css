@@ -5,7 +5,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Nunito Sans', sans-serif;
-    display: block;
 }
 
 body {  
@@ -126,7 +125,8 @@ button {
     top: 25%;
     left: 10%;
     float: left;
-    font-size: 50px;}
+    font-size: 50px;
+}
 
 .texts p {
     position: absolute;
