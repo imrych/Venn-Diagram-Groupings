@@ -227,6 +227,7 @@ function performSetOperations(setData) {
 const inputParameter = document.querySelectorAll('[data-input]');
 const textParameter = document.querySelectorAll('[data-text]');
 const resetBtn = document.getElementById('reset-btn');
+const resetBtn2 = document.getElementById('reset-btn2');
 
 function handleReset() {  
   inputParameter.forEach((e) => {
@@ -245,6 +246,7 @@ function handleReset() {
 }
 
 resetBtn.addEventListener('click', handleReset);
+resetBtn2.addEventListener('click', handleReset);
 
 // Get the button:
 let mybutton = document.getElementById("myBtn");
