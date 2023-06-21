@@ -7,7 +7,7 @@
     font-family:'Nunito Sans', sans-serif;
 }
 body{
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background: linear-gradient(45deg ,blue, cyan, violet, purple);
     background-size: 300% 300%;
@@ -24,6 +24,24 @@ body{
     100%{
         background-position: 0 50%;
     }
+}
+
+header {
+    background-color: #191938;
+    color: white;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.github {
+    color: white;
+    transition: .3s ease all;
+}
+
+.github:hover {
+    color: #3a3a81;
 }
 
 #two-set-container, #three-set-container {
@@ -58,6 +76,11 @@ button {
     font-family: 'Nunito Sans', sans-serif;
 }
 
+#reset-btn {
+    background-color: #b7b7b7;
+    color: black;
+    font-weight: bold;
+}
 input {
     padding: .6rem .8rem;
     border-radius: 12px;
@@ -262,4 +285,9 @@ footer {
     background-color: #191938;
     padding: 2rem;
     color: white;
+}
+
+footer a {
+    color:#b7b7b7;
+    font-weight: bold;
 }

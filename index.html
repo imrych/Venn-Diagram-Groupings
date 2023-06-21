@@ -5,33 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="neutron.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Discrete Math</title>
 </head>
 <body>
- <div class="container">
+    <header>
+        <h1>Discrete Mathematics</h1>
+        <div class="ext-link-container">
+            <a class="github" target="_blank" href="https://github.com/dazedmind/diagram-generator"><i class="fa-brands fa-github fa-2xl"></i></a>
+        </div>
+    </header>
     <main>
         <h1>Select number of sets:</h1>
         <div class="button-container">
             <button id="two-set-btn">2 SETS</button>
             <button id="three-set-btn">3 SETS</button>
+            <button id="reset-btn">RESET</button>
         </div>
 
         <div id="two-set-container">
             <p>Set A</p>
-            <input type="text" id="set1">
+            <input type="text" id="set1" data-input>
             <p>Set B</p>
-            <input type="text" id="set2">
+            <input type="text" id="set2" data-input>
 
             <input id="submit-btn" type="submit" value="Insert">
         </div>
     
         <div id="three-set-container">
             <p>Set A</p>
-            <input type="text" id="set1-of-3">
+            <input type="text" id="set1-of-3" data-input>
             <p>Set B</p>
-            <input type="text" id="set2-of-3">
+            <input type="text" id="set2-of-3" data-input>
             <p>Set C</p>
-            <input type="text" id="set3-of-3">
+            <input type="text" id="set3-of-3" data-input>
 
             <input id="submit-btn2" type="submit" value="Insert">
         </div>
@@ -43,12 +50,12 @@
         <div id="select-2-set">
             <div class="set-flex">
                 <h3>Set A: </h3>
-                <p id="set1-container"></p>
+                <p id="set1-container" data-text></p>
             </div>
 
             <div class="set-flex">
                 <h3>Set B: </h3>
-                <p id="set2-container"></p>
+                <p id="set2-container" data-text></p>
             </div>
         </div>
 
@@ -56,51 +63,51 @@
         <div id="select-3-set">
             <div class="set-flex">
                 <h3>Set A: </h3>
-                <p id="set-container-1"></p>
+                <p id="set-container-1" data-text></p>
             </div>
 
             <div class="set-flex">
                 <h3>Set B: </h3>
-                <p id="set-container-2"></p>
+                <p id="set-container-2" data-text></p>
             </div>
             <div class="set-flex">
                 <h3>Set C: </h3>
-                <p id="set-container-3"></p>
+                <p id="set-container-3" data-text></p>
             </div>
         </div>
 
         <div class="text-container">
 
             <!-- 2 SET -->
-            <p id="union-container"></p>
+            <p id="union-container" data-text></p>
 
-            <p id="intersection1-container"></p>
-            <p id="intersection2-container"></p>
+            <p id="intersection1-container" data-text></p>
+            <p id="intersection2-container" data-text></p>
 
-            <p id="difference1-container"></p>
-            <p id="difference2-container"></p>
+            <p id="difference1-container" data-text></p>
+            <p id="difference2-container" data-text></p>
 
-            <p id="complement1-container"></p>
-            <p id="complement2-container"></p>
+            <p id="complement1-container" data-text></p>
+            <p id="complement2-container" data-text></p>
 
             <!-- 3 SET -->
             
             <!-- DIFFERENCE -->
-            <p id="difference3-container-3"></p>
-            <p id="difference4-container-3"></p>
-            <p id="difference5-container-3"></p>
-            <p id="difference6-container-3"></p>
+            <p id="difference3-container-3" data-text></p>
+            <p id="difference4-container-3" data-text></p>
+            <p id="difference5-container-3" data-text></p>
+            <p id="difference6-container-3" data-text></p>
 
             <!-- COMPLEMENT -->
-            <p id="complement1-container-3"></p>
-            <p id="complement2-container-3"></p>
-            <p id="complement3-container-3"></p>
+            <p id="complement1-container-3" data-text></p>
+            <p id="complement2-container-3" data-text></p>
+            <p id="complement3-container-3" data-text></p>
 
             <!-- INTERSECTION -->
-            <p id="intersection1-container-3"></p>
-            <p id="intersection2-container-3"></p>
-            <p id="intersection3-container-3"></p>
-            <p id="intersectionall-container-3"></p>
+            <p id="intersection1-container-3" data-text></p>
+            <p id="intersection2-container-3" data-text></p>
+            <p id="intersection3-container-3" data-text></p>
+            <p id="intersectionall-container-3" data-text></p>
 
         </div>
     </aside>
@@ -147,9 +154,12 @@
                 <div class="circle-2" id="complement-set-b"></div>
             </div>
         </div>
+    
+    </div>
+    
+
     <script src="script.js"></script>
-    </div>  
-</div> 
+
     <footer>
         <p>Created by BSIT 1-1 as a fulfillment for Final Project in Discrete Mathematics (2023)</p>
         <a href="members.html">Members</a>
